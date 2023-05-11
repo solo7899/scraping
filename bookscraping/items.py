@@ -10,3 +10,11 @@ class BookscrapingItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+
+
+class ScrapeItem(scrapy.Item):
+    url = scrapy.Field()
+    name = scrapy.Field()
+    category = scrapy.Field()
+    price = scrapy.Field()
+    description = scrapy.Field()

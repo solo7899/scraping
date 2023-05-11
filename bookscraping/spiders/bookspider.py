@@ -1,4 +1,5 @@
 import scrapy
+from bookscraping.items import ScrapeItem
 
 
 class BookspiderSpider(scrapy.Spider):
@@ -26,11 +27,16 @@ class BookspiderSpider(scrapy.Spider):
             yield response.follow(next_url, callback=self.parse)
 
     def parse_book(self, response):
-        yield {
-            "name": response.css("div.col-sm-6.product_main h1 ::text").get(),
-            "category": response.xpath("//div//div//ul//li[3]//text()").extract()[1],
-            "price": response.css("p.price_color ::text").get(),
-            "Description": response.xpath(
-                "(//div//div//div//div//article//p)[4]//text()"
-            ).extract()[0],
-        }
+        item = ScrapeItem()
+
+        item["url"] = (response.url,)
+        item["name"] = (response.css("div.col-sm-6.product_main h1 ::text").get(),)
+        item["category"] = (
+            response.xpath("//div//div//ul//li[3]//text()").extract()[1],
+        )
+        item["price"] = (response.css("p.price_color ::text").get(),)
+        item["description"] = response.xpath(
+            "(//div//div//div//div//article//p)[4]//text()"
+        ).extract()[0]
+
+        yield item
