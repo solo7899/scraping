@@ -15,7 +15,6 @@ NEWSPIDER_MODULE = "bookscraping.spiders"
 FEEDS = {
     "databooks.json": {"format": "json"},
     "databooks.csv": {"format": "csv"},
-    "overwrite": True,
 }
 
 
