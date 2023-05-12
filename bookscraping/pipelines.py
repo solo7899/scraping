@@ -16,6 +16,9 @@ class BookscrapingPipeline:
             if field_name != "description":
                 value = adapter.get(field_name)
                 adapter[field_name] = value[0].strip()
+            else:
+                value = adapter.get(field_name)
+                adapter[field_name] = value[:-7]
 
         value = adapter.get("price")
         value = value.replace("£", "")
