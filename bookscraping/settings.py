@@ -12,7 +12,11 @@ BOT_NAME = "bookscraping"
 SPIDER_MODULES = ["bookscraping.spiders"]
 NEWSPIDER_MODULE = "bookscraping.spiders"
 
-FEEDS = {"databooks.json": {"format": "json"}, "databooks.csv": {"format": "csv"}}
+FEEDS = {
+    "databooks.json": {"format": "json"},
+    "databooks.csv": {"format": "csv"},
+    "overwrite": True,
+}
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
